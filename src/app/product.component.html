@@ -10,7 +10,8 @@
   <img [src]="'assets/img/'+product.imageUrl">
 </div> -->
 
-<div [class]="getClasses(1)">
+<!-- Class & Style Binding Examples -->
+<!-- <div [class]="getClasses(1)">
   Most selling phone: {{ model.getProductById(1).name }}
 </div>
 
@@ -30,4 +31,19 @@
 <div class="m-2 p-2" [ngClass]="getClassMap(4)">
   <span [ngStyle]="getStyles(4)"> Most selling </span> phone: {{
   model.getProductById(4).name }}
-</div>
+</div> -->
+
+<!-- Event Binding Examples -->
+<!-- <div (click)="onDivClicked()" style="width: 250px; background-color: brown;">
+  <button name="btn1" (click)="onSubmit($event)">Submit</button>
+  <button name="btn2" (click)="onSubmit($event)">Submit</button>
+</div> -->
+
+<!-- KeyUp Event Examples -->
+<!-- <input (keyup)="onKeyUp($event)" />
+<input #email (keyup.enter)="onKeyUpEnter(email.value)" /> -->
+
+<!-- <input [value]="email" (keyup.enter)="email = $event.target.value; onKeyUp()" /> -->
+<input [(ngModel)]="email" (keyup.enter)="onKeyUp()" />
+<br>
+<span>{{ email }}</span>

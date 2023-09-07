@@ -9,17 +9,20 @@ import { Product } from './product.model';
 })
 export class ProductComponent {
   model: ProductRepository = new ProductRepository();
-  disabled = true;
+
+  // Style Binding Examples
+  /* disabled = true;
 
   getClasses(id: number): string {
     let product = this.model.getProductById(id);
     return (product.price as number <= 1000 ? "bg-info" : "bg-secondary") + " m-2 p-2 text-white ";
-  }
+  } */
 
   // Property Binding Examples
-  //product: Product = this.model.getProductById(1);
+  // product: Product = this.model.getProductById(1);
 
-  getClassMap(id: number): Object {
+  // Class Binding Examples
+  /* getClassMap(id: number): Object {
     let product = this.model.getProductById(id);
     return {
       "bg-success": product.price as number <= 1000,
@@ -35,5 +38,33 @@ export class ProductComponent {
       fontStyle: "italic",
       color: product.price as number <= 1000 ? "gold" : "cornsilk"
     }
+  } */
+
+  // Event Binding Examples
+  /* onSubmit($event: any) {
+    $event.stopPropagation();
+    console.log('Button clicked');
+    console.log($event);
+  }
+
+  onDivClicked() {
+    console.log('Div clicked');
+  } */
+
+  // Keyup Event Examples
+  /* onKeyUp($event: any) {
+    if ($event.keyCode === 13) {
+      console.log($event.target.value);
+    }
+  }
+
+  onKeyUpEnter(email: any) {
+    console.log(email);
+  } */
+
+  email = "company@email.com";
+
+  onKeyUp() {
+    console.log(this.email);
   }
 }
