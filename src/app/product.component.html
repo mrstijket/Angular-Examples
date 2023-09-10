@@ -44,6 +44,31 @@
 <input #email (keyup.enter)="onKeyUpEnter(email.value)" /> -->
 
 <!-- <input [value]="email" (keyup.enter)="email = $event.target.value; onKeyUp()" /> -->
-<input [(ngModel)]="email" (keyup.enter)="onKeyUp()" />
+
+<!-- Two Way Binding Examples -->
+<!-- <input [(ngModel)]="email" (keyup.enter)="onKeyUp()" />
 <br>
-<span>{{ email }}</span>
+<span>{{ email }}</span> -->
+
+<h4>Lower-Upper-Title CasePipe</h4>
+<p>{{ title }}</p>
+<p>{{ title | uppercase }}</p>
+<p>{{ title | lowercase }}</p>
+<p>{{ title | titlecase }}</p>
+<br>
+<h4>Date Pipe</h4>
+<p>{{ today }}</p>
+<p>{{ today | date }}</p>
+<p>{{ today | date: 'short' }}</p>
+<p>{{ today | date: 'h:mm:ss' }}</p>
+<br>
+<h4>Decimal Pipe</h4>
+<p>{{ students }}</p>
+<p>{{ students | number }}</p>
+<p>{{ price | number: '1.2-2' }}</p>
+<br>
+<h4>Currency Pipe</h4>
+<p> {{ price | currency: 'EUR' }}</p>
+<br>
+<h4>Percent Pipe</h4>
+<p>{{ completed | percent: '1.2-2' }}</p>

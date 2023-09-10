@@ -62,9 +62,16 @@ export class ProductComponent {
     console.log(email);
   } */
 
-  email = "company@email.com";
+  // Two Way Binding Examples
+  /* email = "company@email.com";
 
   onKeyUp() {
     console.log(this.email);
-  }
+  } */
+
+  today: number = Date.now();
+  title: string = 'Angular Course';
+  students: number = 21536;
+  price: number = 395.9792;
+  completed: number = 0.26;
 }
