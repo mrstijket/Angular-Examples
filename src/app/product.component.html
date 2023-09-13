@@ -1,7 +1,3 @@
-<div class="bg-primary text-white m-2 p-2">
-  There are {{ model.getProducts().length }} products in the repository
-</div>
-
 <!-- Property Binding Examples -->
 <!-- <div>
   <h2>{{product.name}}</h2>
@@ -74,4 +70,77 @@
 <h4>Percent Pipe</h4>
 <p>{{ completed | percent: '1.2-2' }}</p> -->
 
-{{ text | summary:15 }}
+<!-- Custom Pipes Examples -->
+<!-- {{ text | summary:15 }} -->
+
+<!-- Angular Ng-If Examples  -->
+<!-- <div *ngIf="model.getProducts().length > 0; then productList else EmptyProductList">
+</div>
+
+<ng-template #productList>
+  <div class="bg-primary text-white m-2 p-2">
+    There are {{ model.getProducts().length }} products in the repository.
+  </div>
+</ng-template>
+
+<ng-template #EmptyProductList>
+  <div class="bg-primary text-white m-2 p-2">
+    There are no products in the repository.
+  </div>
+</ng-template>
+
+<div [hidden]="model.getProducts().length == 0" class="bg-primary text-white m-2 p-2">
+  There are {{ model.getProducts().length }} products in the repository.
+</div>
+
+<div [hidden]="model.getProducts().length != 0" class="bg-primary text-white m-2 p-2">
+  There are no products in the repository.
+</div> -->
+
+<!-- Angular Ng-Switch Examples -->
+<!-- <div class="bg-info m-2 p-2" [ngSwitch]="model.getProductCount()">
+  <span *ngSwitchCase="0">There are no products</span>
+  <span *ngSwitchCase="1">There is 1 product</span>
+  <span *ngSwitchCase="2">There are 2 products</span>
+  <span *ngSwitchDefault>There are many products</span>
+</div>
+
+<div class="bg-info m-2 p-2" [ngSwitch]="model.getProductById(2).name">
+  <span *ngSwitchCase="productName">Samsung S20 FE</span>
+  <span *ngSwitchCase="'Iphone 11 Pro'">Iphone 11 Pro</span>
+  <span *ngSwitchCase="'Xiaomi Redmi 12'">Xiaomi Redmi 12</span>
+  <span *ngSwitchCase="'Iphone 13 Pro Max'">Iphone 13 Pro Max</span>
+  <span *ngSwitchCase="'Poco F1'">Poco F1</span>
+  <span *ngSwitchDefault>Undefined Phone</span>
+</div> -->
+
+<!-- Angular Ng-For and Change-Detection Examples -->
+<!-- <div class="m-5">
+  <button class="btn btn-primary" (click)="addProduct()">Add Product</button>
+  <ul class="list-group mt-2">
+    <li
+      *ngFor="let product of model.getProducts(); index as i; first as isFirst; last as isLast; odd as isOdd; even as isEven;"
+      class="list-group-item">
+      {{i+1}} - {{product.name}}
+      <button class="btn btn-danger p-10 m-1" (click)="deleteProduct(product)">Delete</button>
+      <button class="btn btn-warning p-10 m-1" (click)="updateProduct(product)">Update</button>
+      <span *ngIf="isFirst" class="badge bg-primary">First Item</span>
+      <span *ngIf="isLast" class="badge bg-secondary">Last Item</span>
+      <span *ngIf="isEven" class="badge bg-info"> Even numbered Item</span>
+      <span *ngIf="isOdd" class="badge bg-warning"> Odd numbered Item</span>
+    </li>
+  </ul>
+</div> -->
+
+<ng-template [ngTemplateOutlet]="productList" [ngTemplateOutletContext]="{products: model.getProducts()}"></ng-template>
+<ng-template [ngTemplateOutlet]="productList" [ngTemplateOutletContext]="{products: model.getProducts()}"></ng-template>
+
+<ng-template #productList let-products="products">
+  <div class=" m-5">
+    <ul class="list-group mt-2">
+      <li *ngFor="let product of products;" class="list-group-item">
+        {{product.name}}
+      </li>
+    </ul>
+  </div>
+</ng-template>

@@ -8,8 +8,6 @@ import { Product } from './product.model';
   styleUrls: ['product.component.css']
 })
 export class ProductComponent {
-  model: ProductRepository = new ProductRepository();
-
   // Style Binding Examples
   /* disabled = true;
 
@@ -76,5 +74,24 @@ export class ProductComponent {
   // price: number = 395.9792;
   // completed: number = 0.26;
 
-  text = 'Lorem ipsum dolor sit, amet conscestor adipicing elit memento mori';
+  // Custom Pipes Examples
+  // text = 'Lorem ipsum dolor sit, amet conscestor adipicing elit memento mori';
+
+  model: ProductRepository = new ProductRepository();
+
+  // Angular Ng-Switch Examples
+  // productName: string = this.model.getProductById(1).name as string;
+
+  // Angular Ng-For and Change-Detection Examples
+  // addProduct() {
+  //   this.model.addProduct(new Product(6, "Xiaomi Redmi Note 7", "Price/Performance phone", "xiaomiredminote7.jpg", 270));
+  // }
+
+  // deleteProduct(product: Product) {
+  //   this.model.deleteProduct(product);
+  // }
+
+  // updateProduct(product: Product) {
+  //   product.name = "Updated";
+  // }
 }
