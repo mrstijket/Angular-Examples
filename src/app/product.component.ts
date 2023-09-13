@@ -76,5 +76,5 @@ export class ProductComponent {
   // price: number = 395.9792;
   // completed: number = 0.26;
 
-  text = 'Lorem ipsum dolor sit, amet conscestor adipicing elite mama bkk';
+  text = 'Lorem ipsum dolor sit, amet conscestor adipicing elit memento mori';
 }
