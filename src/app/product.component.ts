@@ -69,9 +69,12 @@ export class ProductComponent {
     console.log(this.email);
   } */
 
-  today: number = Date.now();
-  title: string = 'Angular Course';
-  students: number = 21536;
-  price: number = 395.9792;
-  completed: number = 0.26;
+  // Built-in Pipes Examples
+  // today: number = Date.now();
+  // title: string = 'Angular Course';
+  // students: number = 21536;
+  // price: number = 395.9792;
+  // completed: number = 0.26;
+
+  text = 'Lorem ipsum dolor sit, amet conscestor adipicing elite mama bkk';
 }
