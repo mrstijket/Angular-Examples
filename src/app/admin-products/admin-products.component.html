@@ -1,8 +1,8 @@
 <div class="container m-5">
   <div class="row">
     <div class="col-md-6">
-      <div class="bg-info text-white p-2">
-        Selected Product: {{selectedProduct || '(None)'}}
+      <div class="bg-info text-white p-2" *ngIf="selectedProduct">
+        Selected Product: {{selectedProduct.name || '(None)'}}
       </div>
       <table class="table table-sm table-bordered mt-2">
         <thead>
@@ -15,27 +15,39 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let product of products" (mouseover)="pName.value = product.name"
-            (mouseleave)="pName.value = '(None)'">
+          <tr *ngFor="let product of products">
             <td>{{product.id}}</td>
             <td>
               <img src="/assets/img/{{product.imageUrl}}" width="80" style="border-radius: 5px;">
             </td>
-            <td [class.bg-primary]="pName.value == product.name">{{product.name}}</td>
+            <td [class.bg-primary]="getSelected(product)">{{product.name}}</td>
             <td>{{product.price}}</td>
             <td>
-              <button class="btn btn-danger btn-sm">Delete</button>
-              <button class="btn btn-primary btn-sm">Update</button>
+              <button (click)="deleteProduct(product)" class="btn btn-danger btn-sm">Delete</button>
+              <button (click)="editProduct(product)" class="btn btn-primary btn-sm ml-2">Update</button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6" *ngIf="selectedProduct">
       <div class="form-group">
         <label>Product Name</label>
-        <input #pName (keyup.enter)="selectedProduct=pName.value" type="text" class="form-control">
+        <input [(ngModel)]="selectedProduct.name" type="text" class="form-control">
       </div>
+      <div class="form-group">
+        <label>Price</label>
+        <input [(ngModel)]="selectedProduct.price" type="text" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>Image Url</label>
+        <input [(ngModel)]="selectedProduct.imageUrl" type="text" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <textarea [(ngModel)]="selectedProduct.description" type="text" class="form-control"></textarea>
+      </div>
+      <button class="btn btn-primary" (click)="saveChanges()">Save Changes</button>
     </div>
   </div>
 </div>

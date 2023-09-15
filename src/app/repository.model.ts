@@ -28,8 +28,8 @@ export class ProductRepository {
   //   this.products.push(product);
   // }
 
-  // deleteProduct(product: Product) {
-  //   let index = this.products.indexOf(product);
-  //   this.products.splice(index, 1);
-  // }
+  deleteProduct(product: Product) {
+    let index = this.products.indexOf(product);
+    this.products.splice(index, 1);
+  }
 }

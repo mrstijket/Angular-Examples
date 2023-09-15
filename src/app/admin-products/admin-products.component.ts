@@ -10,7 +10,7 @@ import { Product } from '../product.model';
 export class AdminProductsComponent {
   products;
   model: ProductRepository;
-  selectedProduct: string;
+  selectedProduct: Product;
 
   constructor() {
     this.model = new ProductRepository();
@@ -18,6 +18,23 @@ export class AdminProductsComponent {
   }
 
   getSelected(product: Product): boolean {
-    return product.name == this.selectedProduct;
+    return product == this.selectedProduct;
+  }
+
+  editProduct(product: Product) {
+    this.selectedProduct = product;
+  }
+
+  deleteProduct(product: Product) {
+    this.model.deleteProduct(product);
+  }
+
+  saveChanges() {
+    const p = this.model.getProductById(this.selectedProduct.id);
+    p.name = this.selectedProduct.name;
+    p.description = this.selectedProduct.description;
+    p.price = this.selectedProduct.price;
+    p.imageUrl = this.selectedProduct.imageUrl;
+    this.selectedProduct = null;
   }
 }
