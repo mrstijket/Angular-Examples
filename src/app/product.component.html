@@ -155,50 +155,57 @@
   <div class="row">
     <div class="col-8">
       <div class="m-3">
-        <div class="bg-info text-white m-2 p-2">
-          {{ jsonProduct }}
-        </div>
-        <div class="form-group">
-          <label>Name</label>
-          <input required minlength="3" maxlength="20" pattern="^[A-Za-z]+$" [(ngModel)]="newProduct.name" name="name"
-            #name="ngModel" type="text" class="form-control" (change)="log(name)">
-          <div class="alert alert-danger" *ngIf="name.invalid && name.touched">
-            <p *ngFor="let error of getValidationErrors(name)">
-              {{ error }}
-            </p>
+        <form #form="ngForm" (ngSubmit)="submitForm(form)">
+          <div class="bg-danger text-white p-3 my-2" *ngIf="formSubmitted && form.invalid">
+            Some unknwon error accured. Please check your values and try again.
           </div>
-        </div>
-        <div class="form-group">
-          <label>Description</label>
-          <textarea required minlength="10" maxlength="200" pattern="^[A-Za-z]+$" [(ngModel)]="newProduct.description"
-            name="description" #description="ngModel" class="form-control"></textarea>
-          <div class="alert alert-danger" *ngIf="description.invalid && description.touched">
-            <p *ngFor="let error of getValidationErrors(description)">
-              {{ error }}
-            </p>
+          <div class="bg-info text-white m-2 p-2">
+            {{ jsonProduct }}
           </div>
-        </div>
-        <div class="form-group">
-          <label>Price</label>
-          <input required pattern="^[0-9]+$" [(ngModel)]="newProduct.price" name="price" #price="ngModel" type="text"
-            class="form-control">
-          <div class="alert alert-danger" *ngIf="price.invalid && price.touched">
-            <p *ngFor="let error of getValidationErrors(price)">
-              {{ error }}
-            </p>
+          <div class="form-group">
+            <label>Name</label>
+            <input required minlength="3" maxlength="20" pattern="^[A-Za-z ]+$" [(ngModel)]="newProduct.name"
+              name="name" #name="ngModel" type="text" class="form-control" (change)="log(name)">
+            <div class="alert alert-danger" *ngIf="(formSubmitted || name.dirty) && name.invalid">
+              <li *ngFor="let error of getValidationErrors(name)">
+                {{ error }}
+              </li>
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label>Image Url</label>
-          <input required [(ngModel)]="newProduct.imageUrl" name="imageUrl" #imageUrl="ngModel" type="text"
-            class="form-control">
-          <div class="alert alert-danger" *ngIf="imageUrl.invalid && imageUrl.touched">
-            <p *ngFor="let error of getValidationErrors(imageUrl)">
-              {{ error }}
-            </p>
+          <div class="form-group">
+            <label>Description</label>
+            <textarea required minlength="10" maxlength="200" pattern="^[A-Za-z ]+$"
+              [(ngModel)]="newProduct.description" name="description" #description="ngModel" class="form-control"
+              (change)="log(description)"></textarea>
+            <div class="alert alert-danger" *ngIf="(formSubmitted || description.dirty) && description.invalid">
+              <li *ngFor="let error of getValidationErrors(description)">
+                {{ error }}
+              </li>
+            </div>
           </div>
-        </div>
-        <button (click)="addProduct(newProduct)" class="btn btn-primary">Submit</button>
+          <div class="form-group">
+            <label>Price</label>
+            <input required pattern="^[0-9]+$" [(ngModel)]="newProduct.price" name="price" #price="ngModel" type="text"
+              class="form-control" (change)="log(price)">
+            <div class="alert alert-danger" *ngIf="(formSubmitted || price.dirty) && price.invalid">
+              <li *ngFor="let error of getValidationErrors(price)">
+                {{ error }}
+              </li>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Image Url</label>
+            <input required [(ngModel)]="newProduct.imageUrl" name="imageUrl" #imageUrl="ngModel" type="text"
+              class="form-control" (change)="log(imageUrl)">
+            <div class="alert alert-danger" *ngIf="(formSubmitted || imageUrl.dirty) && imageUrl.invalid">
+              <li *ngFor="let error of getValidationErrors(imageUrl)">
+                {{ error }}
+              </li>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary" [disabled]="formSubmitted && form.invalid"
+            [class.btn-secondary]="formSubmitted && form.invalid">Submit</button>
+        </form>
       </div>
     </div>
   </div>
