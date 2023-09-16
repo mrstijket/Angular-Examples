@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgIterable } from '@angular/core';
 import { ProductRepository } from './repository.model';
 import { Product } from './product.model';
 
@@ -94,4 +94,40 @@ export class ProductComponent {
   // updateProduct(product: Product) {
   //   product.name = "Updated";
   // }
+
+  newProduct: Product = new Product();
+
+  get jsonProduct() {
+    return JSON.stringify(this.newProduct);
+  }
+
+  addProduct(p: Product) {
+    console.log("New Product: " + this.jsonProduct);
+  }
+
+  log(x) {
+    console.log(x);
+  }
+
+  getValidationErrors(state: any) {
+    let controlName: string = state.name;
+    let messages: string[] = [];
+
+    if (state.errors) {
+      for (let errorName in state.errors) {
+        switch (errorName) {
+          case "required":
+            messages.push(`You must enter a ${controlName}`);
+            break;
+          case "minlength":
+            messages.push(`Min 3 character for ${controlName}`);
+            break;
+          case "pattern":
+            messages.push(`${controlName} contains unvalid characters`);
+            break;
+        }
+      }
+    }
+    return messages;
+  }
 }
